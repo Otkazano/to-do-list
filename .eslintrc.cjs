@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    'plugin:prettier/recommended',
+    'prettier',
   ],
   overrides: [
     {
@@ -31,5 +31,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  rules: {},
+  rules: {
+    'prettier/prettier': 'warn',
+  },
 };
