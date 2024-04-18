@@ -1,10 +1,14 @@
+import { Container, CssBaseline } from '@mui/material';
 import React from 'react';
 
 const App: React.FC = () => {
   return (
     <>
-      <h1>To do list</h1>
-      <p>Privet</p>
+      <CssBaseline />
+      <Container maxWidth="xl">
+        <h1>To Do list</h1>
+        <p>Privet</p>
+      </Container>
     </>
   );
 };
