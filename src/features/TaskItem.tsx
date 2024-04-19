@@ -1,6 +1,6 @@
 import React from 'react';
 import DeleteButton from '../shared/ui/DeleteButton';
-import { Card, CardActions } from '@mui/material';
+import { Card, CardActions, Container, Typography } from '@mui/material';
 import EditButton from '../shared/ui/EditButton';
 import MenuMoreOptions from '../shared/ui/MenuMoreOptions';
 
@@ -16,11 +16,11 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
   return (
-    <>
-      <Card variant="outlined" sx={{ margin: 5, padding: 3 }}>
-        <p>{item.id}</p>
-        <p>{item.title}</p>
-        <p>{item.status}</p>
+    <Container maxWidth="xs">
+      <Card variant="outlined" sx={{ margin: 1, padding: 2 }}>
+        <Typography component="p" variant="h6">
+          {item.title}
+        </Typography>
         <CardActions>
           <MenuMoreOptions>
             <EditButton onClick={() => {}} />
@@ -28,7 +28,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
           </MenuMoreOptions>
         </CardActions>
       </Card>
-    </>
+    </Container>
   );
 };
 

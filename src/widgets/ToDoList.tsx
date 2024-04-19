@@ -16,6 +16,26 @@ const ToDoList: React.FC = () => {
     setAllTasksItems(getAllTaskItems());
   }, []);
 
+  const sortByStatus = (tasks: Task[]) => {
+    const statusOrder = {
+      new: 1,
+      inProgress: 2,
+      done: 3,
+    };
+
+    return tasks.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
+  };
+
+  const sortedTasks = sortByStatus(allTasksItems);
+
+  const listOfToDos = (
+    <>
+      {sortedTasks.map(item => (
+        <TaskItem item={item} key={item.id} />
+      ))}
+    </>
+  );
+
   return (
     <>
       {allTasksItems.length === 0 ? (
@@ -23,7 +43,7 @@ const ToDoList: React.FC = () => {
           Создайте свою первую задачу!
         </Typography>
       ) : (
-        allTasksItems.map(item => <TaskItem item={item} key={item.id} />)
+        <>{listOfToDos}</>
       )}
     </>
   );
