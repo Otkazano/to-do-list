@@ -43,7 +43,7 @@ const NewTaskInput: React.FC = () => {
         disabled={!taskText}
         loading={loading}
         text="Создать новую задачу"
-        loadingText="Новая задача создается"
+        loadingText="Новая задача создается..."
         onClick={handleCreateTask}
       />
     </>
