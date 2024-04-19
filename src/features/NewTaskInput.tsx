@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import InputButton from '../shared/ui/InputButton';
 import { TextField } from '@mui/material';
+import { setNewTaskItem } from '../shared/api/api';
 
 const NewTaskInput: React.FC = () => {
   const [taskText, setTaskText] = useState<string>('');
@@ -12,6 +13,7 @@ const NewTaskInput: React.FC = () => {
 
   const handleCreateTask = () => {
     setLoading(true);
+    setNewTaskItem({ id: Math.random(), title: taskText, status: 'new' });
     setTimeout(() => {
       setLoading(false);
       setTaskText('');
