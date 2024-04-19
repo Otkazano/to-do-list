@@ -14,7 +14,7 @@ interface TaskItemProps {
   item: Task;
 }
 
-function TaskItem({ item }: TaskItemProps) {
+const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
   return (
     <>
       <Card variant="outlined" sx={{ margin: 5, padding: 3 }}>
@@ -30,6 +30,6 @@ function TaskItem({ item }: TaskItemProps) {
       </Card>
     </>
   );
-}
+};
 
 export default TaskItem;

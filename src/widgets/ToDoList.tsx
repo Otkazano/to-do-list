@@ -9,7 +9,7 @@ interface Task {
   status: 'new' | 'inProgress' | 'done';
 }
 
-function ToDoList() {
+const ToDoList: React.FC = () => {
   const [allTasksItems, setAllTasksItems] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -27,6 +27,6 @@ function ToDoList() {
       )}
     </>
   );
-}
+};
 
 export default ToDoList;
