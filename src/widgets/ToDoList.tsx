@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllTaskItems } from '../shared/api/api';
 import TaskItem from '../features/TaskItem';
-import { Typography } from '@mui/material';
+import { Typography, Grid } from '@mui/material';
 
 interface Task {
   id: number;
@@ -28,13 +28,13 @@ const ToDoList: React.FC = () => {
 
   const sortedTasks = sortByStatus(allTasksItems);
 
-  const listOfToDos = (
-    <>
-      {sortedTasks.map(item => (
-        <TaskItem item={item} key={item.id} />
-      ))}
-    </>
-  );
+  const groupedTasks: { [key: string]: Task[] } = {};
+  sortedTasks.forEach(task => {
+    if (!groupedTasks[task.status]) {
+      groupedTasks[task.status] = [];
+    }
+    groupedTasks[task.status].push(task);
+  });
 
   return (
     <>
@@ -43,7 +43,18 @@ const ToDoList: React.FC = () => {
           Создайте свою первую задачу!
         </Typography>
       ) : (
-        <>{listOfToDos}</>
+        <Grid container spacing={2}>
+          {Object.keys(groupedTasks).map(status => (
+            <Grid item key={status} xs={4}>
+              <Typography variant="h6" sx={{ marginBottom: 2 }}>
+                {status}
+              </Typography>
+              {groupedTasks[status].map(item => (
+                <TaskItem item={item} key={item.id} />
+              ))}
+            </Grid>
+          ))}
+        </Grid>
       )}
     </>
   );
