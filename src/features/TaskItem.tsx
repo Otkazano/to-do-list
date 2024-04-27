@@ -3,6 +3,7 @@ import DeleteButton from '../shared/ui/DeleteButton';
 import { Card, CardActions, Container, Typography } from '@mui/material';
 import EditButton from '../shared/ui/EditButton';
 import MenuMoreOptions from '../shared/ui/MenuMoreOptions';
+import StatusCheckBox from '../shared/ui/StatusCheckbox';
 
 interface Task {
   id: number;
@@ -22,6 +23,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
           {item.title}
         </Typography>
         <CardActions>
+          <StatusCheckBox />
           <MenuMoreOptions>
             <EditButton onClick={() => {}} />
             <DeleteButton onClick={() => {}} />
