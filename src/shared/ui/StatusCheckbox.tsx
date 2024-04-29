@@ -26,7 +26,7 @@ const StatusCheckBox: React.FC = () => {
         <ToggleButton value="inProgress" aria-label="задача в работе">
           <CachedIcon />
         </ToggleButton>
-        <ToggleButton value="done" aria-label="задача выполнена">
+        <ToggleButton value="done" aria-label="задача была выполнена">
           <CheckCircleOutlineIcon />
         </ToggleButton>
       </ToggleButtonGroup>
