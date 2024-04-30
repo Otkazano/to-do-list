@@ -5,13 +5,15 @@ import EditButton from '../shared/ui/EditButton';
 import MenuMoreOptions from '../shared/ui/MenuMoreOptions';
 import StatusCheckBox from '../shared/ui/StatusCheckbox';
 import { useDispatch } from 'react-redux';
-import { updateTaskStatusInStore } from '../shared/redux/slices/taskSlice';
+import { deleteTask, updateTaskStatusInStore } from '../shared/redux/slices/taskSlice';
 import { updateTaskStatus } from '../shared/api/api';
+import { Task } from '@mui/icons-material';
 
 interface Task {
   id: number;
   title: string;
   status: 'new' | 'inProgress' | 'done';
+  number?: number;
 }
 
 interface TaskItemProps {
@@ -24,17 +26,20 @@ const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
     updateTaskStatus(item.id, newAlignment);
     dispatch(updateTaskStatusInStore({ id: item.id, status: newAlignment }));
   };
+  const deleteItem = () => {
+    dispatch(deleteTask(item.id));
+  };
   return (
     <Container maxWidth="xs">
       <Card variant="outlined" sx={{ margin: 1, padding: 2 }}>
         <Typography component="p" variant="h6">
-          {item.title}
+          {item.number}. {item.title}
         </Typography>
         <CardActions>
           <StatusCheckBox initialAlignment={item.status} onClick={setNewStatus} />
           <MenuMoreOptions>
             <EditButton onClick={() => {}} />
-            <DeleteButton onClick={() => {}} />
+            <DeleteButton onClick={deleteItem} />
           </MenuMoreOptions>
         </CardActions>
       </Card>

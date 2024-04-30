@@ -29,7 +29,9 @@ const ToDoList: React.FC = () => {
 
     const sortedTasks: Task[] = [];
     Object.keys(statusOrder).forEach(status => {
-      const tasksWithStatus = tasks.filter(task => task.status === status);
+      const tasksWithStatus = tasks
+        .map((task, index) => ({ ...task, number: index + 1 }))
+        .filter(task => task.status === status);
       sortedTasks.push(...tasksWithStatus);
     });
 

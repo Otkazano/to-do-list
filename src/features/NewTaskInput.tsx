@@ -1,11 +1,14 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import InputButton from '../shared/ui/InputButton';
 import { TextField } from '@mui/material';
-import { setNewTaskItem } from '../shared/api/api';
+import { getAllTaskItems, setNewTaskItem } from '../shared/api/api';
+import { useDispatch } from 'react-redux';
+import { setAllTasksItems } from '../shared/redux/slices/taskSlice';
 
 const NewTaskInput: React.FC = () => {
   const [taskText, setTaskText] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTaskText(event.target.value);
@@ -15,7 +18,7 @@ const NewTaskInput: React.FC = () => {
     setLoading(true);
     setNewTaskItem({ id: Math.random(), title: taskText, status: 'new' });
     setTimeout(() => {
-      // добавить в стор
+      dispatch(setAllTasksItems(getAllTaskItems()));
       setLoading(false);
       setTaskText('');
     }, 2000);
