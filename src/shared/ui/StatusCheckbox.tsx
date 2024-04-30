@@ -8,8 +8,10 @@ const StatusCheckBox: React.FC = () => {
   const [alignment, setAlignment] = React.useState('new');
 
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
     console.log(event);
-    setAlignment(newAlignment);
   };
   return (
     <>

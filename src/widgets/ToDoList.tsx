@@ -23,7 +23,13 @@ const ToDoList: React.FC = () => {
       done: 3,
     };
 
-    return tasks.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
+    const sortedTasks: Task[] = [];
+    Object.keys(statusOrder).forEach(status => {
+      const tasksWithStatus = tasks.filter(task => task.status === status);
+      sortedTasks.push(...tasksWithStatus);
+    });
+
+    return sortedTasks;
   };
 
   const sortedTasks = sortByStatus(allTasksItems);
@@ -36,6 +42,8 @@ const ToDoList: React.FC = () => {
     groupedTasks[task.status].push(task);
   });
 
+  const statuses = ['new', 'inProgress', 'done'];
+
   return (
     <>
       {allTasksItems.length === 0 ? (
@@ -44,14 +52,22 @@ const ToDoList: React.FC = () => {
         </Typography>
       ) : (
         <Grid container spacing={2}>
-          {Object.keys(groupedTasks).map(status => (
-            <Grid item key={status} xs={4}>
-              <Typography variant="h6" sx={{ marginBottom: 2 }}>
-                {status}
+          {statuses.map(status => (
+            <Grid item xs={12} sm={6} md={4} key={status}>
+              <Typography variant="h4" align="center" sx={{ margin: 2 }}>
+                {status === 'new'
+                  ? 'Новые'
+                  : status === 'inProgress'
+                    ? 'В процессе'
+                    : 'Выполненные'}
               </Typography>
-              {groupedTasks[status].map(item => (
-                <TaskItem item={item} key={item.id} />
-              ))}
+              {groupedTasks[status] ? (
+                groupedTasks[status].map(item => <TaskItem item={item} key={item.id} />)
+              ) : (
+                <Typography variant="body1" align="center">
+                  Нет задач
+                </Typography>
+              )}
             </Grid>
           ))}
         </Grid>
