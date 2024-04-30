@@ -22,11 +22,11 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
   const dispatch = useDispatch();
-  const setNewStatus = (newAlignment: 'new' | 'inProgress' | 'done') => {
+  const onSetNewStatus = (newAlignment: 'new' | 'inProgress' | 'done') => {
     updateTaskStatus(item.id, newAlignment);
     dispatch(updateTaskStatusInStore({ id: item.id, status: newAlignment }));
   };
-  const deleteItem = () => {
+  const onDeleteItem = () => {
     dispatch(deleteTask(item.id));
   };
   return (
@@ -36,10 +36,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
           {item.number}. {item.title}
         </Typography>
         <CardActions>
-          <StatusCheckBox initialAlignment={item.status} onClick={setNewStatus} />
+          <StatusCheckBox initialAlignment={item.status} onClick={onSetNewStatus} />
           <MenuMoreOptions>
             <EditButton onClick={() => {}} />
-            <DeleteButton onClick={deleteItem} />
+            <DeleteButton onClick={onDeleteItem} />
           </MenuMoreOptions>
         </CardActions>
       </Card>
