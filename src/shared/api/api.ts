@@ -51,3 +51,10 @@ export function updateTaskStatus(id: number, newStatus: 'new' | 'inProgress' | '
   const updatedTasksItemsString = JSON.stringify(updatedTasks);
   localStorage.setItem('allTasks', updatedTasksItemsString);
 }
+
+export function deleteTaskInApi(id: number): void {
+  const allTasks = getAllTaskItems();
+  const updatedTasks = allTasks.filter(task => task.id !== id);
+  const updatedTasksItemsString = JSON.stringify(updatedTasks);
+  localStorage.setItem('allTasks', updatedTasksItemsString);
+}

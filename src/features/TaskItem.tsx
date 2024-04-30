@@ -6,7 +6,7 @@ import MenuMoreOptions from '../shared/ui/MenuMoreOptions';
 import StatusCheckBox from '../shared/ui/StatusCheckbox';
 import { useDispatch } from 'react-redux';
 import { deleteTask, updateTaskStatusInStore } from '../shared/redux/slices/taskSlice';
-import { updateTaskStatus } from '../shared/api/api';
+import { deleteTaskInApi, updateTaskStatus } from '../shared/api/api';
 import { Task } from '@mui/icons-material';
 
 interface Task {
@@ -27,6 +27,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ item }) => {
     dispatch(updateTaskStatusInStore({ id: item.id, status: newAlignment }));
   };
   const onDeleteItem = () => {
+    deleteTaskInApi(item.id);
     dispatch(deleteTask(item.id));
   };
   return (
