@@ -5,10 +5,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import baseTheme from '../shared/theme/baseTheme.ts';
 import ToDoList from '../widgets/ToDoList.tsx';
 import '../styles/globalStyles.css';
+import store from '../shared/redux/store.ts';
+import { Provider } from 'react-redux';
 
 const App: React.FC = () => {
   return (
-    <>
+    <Provider store={store}>
       <ThemeProvider theme={baseTheme}>
         <CssBaseline />
         <Container maxWidth="xl">
@@ -19,7 +21,7 @@ const App: React.FC = () => {
           <ToDoList />
         </Container>
       </ThemeProvider>
-    </>
+    </Provider>
   );
 };
 

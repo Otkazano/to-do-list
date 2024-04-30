@@ -15,6 +15,7 @@ const NewTaskInput: React.FC = () => {
     setLoading(true);
     setNewTaskItem({ id: Math.random(), title: taskText, status: 'new' });
     setTimeout(() => {
+      // добавить в стор
       setLoading(false);
       setTaskText('');
     }, 2000);

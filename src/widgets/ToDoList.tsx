@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Typography, Grid } from '@mui/material';
+import { RootState } from '../shared/redux/store';
+import { setAllTasksItems } from '../shared/redux/slices/taskSlice';
 import { getAllTaskItems } from '../shared/api/api';
 import TaskItem from '../features/TaskItem';
-import { Typography, Grid } from '@mui/material';
 
 interface Task {
   id: number;
@@ -10,11 +13,12 @@ interface Task {
 }
 
 const ToDoList: React.FC = () => {
-  const [allTasksItems, setAllTasksItems] = useState<Task[]>([]);
+  const dispatch = useDispatch();
+  const allTasksItems = useSelector((state: RootState) => state.tasks.tasks);
 
   useEffect(() => {
-    setAllTasksItems(getAllTaskItems());
-  }, []);
+    dispatch(setAllTasksItems(getAllTaskItems()));
+  }, [dispatch]);
 
   const sortByStatus = (tasks: Task[]) => {
     const statusOrder = {
@@ -64,7 +68,7 @@ const ToDoList: React.FC = () => {
               {groupedTasks[status] ? (
                 groupedTasks[status].map(item => <TaskItem item={item} key={item.id} />)
               ) : (
-                <Typography variant="body1" align="center">
+                <Typography variant="body2" align="center">
                   Нет задач
                 </Typography>
               )}

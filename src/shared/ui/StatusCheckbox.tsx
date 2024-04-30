@@ -1,18 +1,28 @@
+import React from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import CachedIcon from '@mui/icons-material/Cached';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import React from 'react';
 
-const StatusCheckBox: React.FC = () => {
-  const [alignment, setAlignment] = React.useState('new');
+interface StatusCheckBoxProps {
+  initialAlignment: 'new' | 'inProgress' | 'done';
+  onClick: (newAlignment: 'new' | 'inProgress' | 'done') => void;
+}
 
-  const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+const StatusCheckBox: React.FC<StatusCheckBoxProps> = ({ initialAlignment, onClick }) => {
+  const [alignment, setAlignment] = React.useState<'new' | 'inProgress' | 'done'>(initialAlignment);
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: 'new' | 'inProgress' | 'done',
+  ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
+      onClick(newAlignment);
     }
     console.log(event);
   };
+
   return (
     <>
       <ToggleButtonGroup
