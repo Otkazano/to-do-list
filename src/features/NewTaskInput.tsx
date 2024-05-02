@@ -34,7 +34,6 @@ const NewTaskInput: React.FC = () => {
     <>
       <TextField
         fullWidth
-        id="outlined-basic"
         label="Напишите свою новую задачу"
         variant="outlined"
         margin="normal"

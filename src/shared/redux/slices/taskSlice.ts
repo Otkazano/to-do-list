@@ -34,7 +34,7 @@ const taskSlice = createSlice({
         taskToUpdate.status = status;
       }
     },
-    updateTaskTitle(state, action: PayloadAction<{ id: number; title: string }>) {
+    updateTaskTitleInStore(state, action: PayloadAction<{ id: number; title: string }>) {
       const { id, title } = action.payload;
       const taskToUpdate = state.tasks.find(task => task.id === id);
       if (taskToUpdate) {
@@ -47,6 +47,11 @@ const taskSlice = createSlice({
   },
 });
 
-export const { addTask, deleteTask, updateTaskStatusInStore, updateTaskTitle, setAllTasksItems } =
-  taskSlice.actions;
+export const {
+  addTask,
+  deleteTask,
+  updateTaskStatusInStore,
+  updateTaskTitleInStore,
+  setAllTasksItems,
+} = taskSlice.actions;
 export default taskSlice.reducer;
