@@ -4,7 +4,6 @@ import NewTaskInput from '../features/NewTaskInput';
 import { ThemeProvider } from '@mui/material/styles';
 import baseTheme from '../shared/theme/baseTheme.ts';
 import ToDoList from '../widgets/ToDoList.tsx';
-import '../styles/globalStyles.css';
 import store from '../shared/redux/store.ts';
 import { Provider } from 'react-redux';
 
